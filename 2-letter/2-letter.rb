@@ -10,17 +10,22 @@ class Game
     end
     attr_accessor :correct, :incorrect, :correct_words_false, :incorrect_words_false, :correct_words, :incorrect_words, :game_going
 
+    def question(fake_or_real) 
+            puts "is this word legit?"
+            if fake_or_real == 0
+                puts self.incorrect_words.sample
+            elsif fake_or_real == 1
+                puts self.correct_words.sample
+            end
+    end
+
     def play
         puts "Welcome! Use y for yes and n for no. Enter q to quit at any time."
         while self.game_going
             rand = rand(2)
-            question_string = "Is this word legit?"
-            puts question_string
-            if rand == 0
-                puts self.incorrect_words.sample
-            elsif rand == 1
-                puts self.correct_words.sample
-            end
+            p "correct: " + self.correct.to_s
+            p "incorrect: " + self.incorrect.to_s
+            question(rand)
             y_or_n = gets.chomp
             if rand == 0 && y_or_n == "n" || rand == 1 && y_or_n == "y"
                 puts "YOU ARE RIGHT!"
@@ -31,8 +36,7 @@ class Game
                 puts "YOU ARE WRONG!"
                 self.incorrect += 1 
             end
-            p "correct: " + self.correct.to_s
-            p "incorrect: " + self.incorrect.to_s
+            system "clear"
         end
     end
 end
