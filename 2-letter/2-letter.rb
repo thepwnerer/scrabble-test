@@ -6,14 +6,37 @@ class Game
         @incorrect = 0
         @correct_words_false = Array.new
         @incorrect_words_false = Array.new
+        @game_going = true
     end
-    attr_accessor :correct, :incorrect, :correct_words_false, :incorrect_words_false, :correct_words, :incorrect_words
+    attr_accessor :correct, :incorrect, :correct_words_false, :incorrect_words_false, :correct_words, :incorrect_words, :game_going
+
+    def play
+        puts "Welcome! Use y for yes and n for no. Enter q to quit at any time."
+        while self.game_going
+            rand = rand(2)
+            question_string = "Is this word legit?"
+            puts question_string
+            if rand == 0
+                puts self.incorrect_words.sample
+            elsif rand == 1
+                puts self.correct_words.sample
+            end
+            y_or_n = gets.chomp
+            if rand == 0 && y_or_n == "n" || rand == 1 && y_or_n == "y"
+                puts "YOU ARE RIGHT!"
+                self.correct += 1
+            elsif y_or_n == "q"
+                self.game_going = false
+            else 
+                puts "YOU ARE WRONG!"
+                self.incorrect += 1 
+            end
+            p "correct: " + self.correct.to_s
+            p "incorrect: " + self.incorrect.to_s
+        end
+    end
 end
 
 test = Game.new
 
-test.correct_words
-
-test.incorrect_words.each do |word|
-    p word
-end
+test.play
