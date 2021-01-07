@@ -35,7 +35,7 @@ EW
 EX
 FA
 FE
-Gi
+GI
 GO
 HA
 HE
