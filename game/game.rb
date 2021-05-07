@@ -41,12 +41,20 @@ class Game
     end
     def incorrect_output_printing()
         p "The correct words you got wrong (guessed false) were the following: word -> times incorrect"
-        self.correct_words_wrong.each do |key, value|
-            p key + " -> " + value.to_s
+        if self.correct_words_wrong.length == 0
+            p "None here!"
+        else
+            self.correct_words_wrong.each do |key, value|
+                p key + " -> " + value.to_s
+            end
         end
         p "The incorrect words you got wrong (guessed true) were the following: word -> times incorrect"
-        self.incorrect_words_wrong.each do |key, value|
-            p key + " -> " + value.to_s
+        if self.incorrect_words_wrong.length == 0
+            p "None here!"
+        else
+            self.incorrect_words_wrong.each do |key, value|
+                p key + " -> " + value.to_s
+            end
         end
     end
 
